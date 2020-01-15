@@ -1,4 +1,10 @@
-==Launch instructions for 2-choice experiment
+== Python requirements ==
+
+You'll need boto3 and xmltodict
+
+For database connections mysql-connector-python
+
+== Launch instructions for 2-choice experiment ==
 
 ```
 source ~/py3.6env/bin/activate
