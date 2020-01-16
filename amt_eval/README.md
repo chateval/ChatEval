@@ -4,6 +4,8 @@ You'll need boto3 and xmltodict
 
 For database connections mysql-connector-python
 
+For detokenization nltk
+
 == Launch instructions for 2-choice experiment ==
 
 ```
