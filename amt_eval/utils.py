@@ -3,6 +3,9 @@ import codecs
 import xmltodict
 import re
 
+from nltk.tokenize.treebank import TreebankWordDetokenizer
+
+
 class Example:
   '''Represents a single source line and all corresponding target lines
    we would like a Turker to evaluate.
@@ -56,7 +59,8 @@ def process_source_and_responses(source_file, target_files):
     with codecs.open(target_file, 'r', encoding="utf-8") as t_f:
       target_lines_for_file = t_f.readlines()
       for idx, line in enumerate(target_lines_for_file):
-        examples[idx].add_target_line(line.strip())
+        examples[idx].add_target_line(TreebankWordDetokenizer().detokenize(line.strip().lower().split()))
+        print(TreebankWordDetokenizer().detokenize(line.strip().lower().split()))
 
   return examples
 
