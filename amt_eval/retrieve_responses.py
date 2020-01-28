@@ -18,6 +18,9 @@ parser.add_argument('-d', '--hit_list_path',
 parser.add_argument('-b', '--sandbox',
                     default=False, action='store_true',
                     help='Set to true to run in the sandbox.')
+parser.add_argument('-p', '--pay',
+                    default=False, action='store_true',
+                    help='Set to true to pay the workers.')
                     
 args = parser.parse_args()
 
@@ -30,8 +33,8 @@ if __name__ == '__main__':
     import pdb; pdb.set_trace()
   with open(args.hit_list_path, 'r') as f_in:
     for hit_id in f_in:
-      print('Processing: ' + hit_id)
       hit_id = hit_id.strip()
+      print('Processing: ' + hit_id)
 
       try:
         worker_results = mturk.list_assignments_for_hit(
@@ -39,6 +42,17 @@ if __name__ == '__main__':
       except Error as e:
         print('Could not find results for HIT: ' + hit_id)
         continue
+      for assignment in worker_results['Assignments']:
+        assignment_id = assignment['AssignmentId']
+        if args.pay == True:
+          if assignment['AssignmentStatus'] == 'Submitted':
+            print('Approving Assignment {}'.format(assignment_id))
+            mturk.approve_assignment(
+              AssignmentId=assignment_id,
+              RequesterFeedback='good',
+              OverrideRejection=False,
+            )
+
 
       worker_results_list.append(worker_results)
 
