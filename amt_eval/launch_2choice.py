@@ -72,9 +72,10 @@ def create_HIT(examples, hit_id):
             Title="Evaluate a chatbot system.",
             Description="Rank the responses of a chatbot",
             Keywords="question, answer, chatbot, research, dialog, rank",
-            AssignmentDurationInSeconds=180,
+            AssignmentDurationInSeconds=300,
             LifetimeInSeconds=86400,
-            Reward="0.02")
+            AutoApprovalDelayInSeconds=4*86400,
+            Reward="0.10")
             # UniqueRequestToken=hit_id)
   except Exception as e:
     import pdb; pdb.set_trace()
