@@ -60,6 +60,7 @@ def process_source_and_responses(source_file, target_files):
       target_lines_for_file = t_f.readlines()
       for idx, line in enumerate(target_lines_for_file):
         examples[idx].add_target_line(TreebankWordDetokenizer().detokenize(line.strip().lower().split()))
+        #examples[idx].add_target_line(line.strip())
 
   return examples
 
