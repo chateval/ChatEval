@@ -38,7 +38,7 @@ if __name__ == '__main__':
 
       try:
         worker_results = mturk.list_assignments_for_hit(
-            HITId=hit_id, AssignmentStatuses=['Submitted'])
+            HITId=hit_id, AssignmentStatuses=['Submitted', 'Approved'])
       except Error as e:
         print('Could not find results for HIT: ' + hit_id)
         continue
