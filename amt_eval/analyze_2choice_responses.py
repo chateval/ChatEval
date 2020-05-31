@@ -11,17 +11,6 @@ import numpy as np
 import utils
 
 
-parser = argparse.ArgumentParser(description='Analyze the AMT HIT results for all of the provided HIT ids.')
-parser.add_argument('-d', '--responses_path',
-                    help='Path to a .pkl file containing HIT responses',
-                    required=True)
-parser.add_argument('-t','--target_list',
-                    help='Text file containing paths to target files, one per line. These should be in the same order as they were when the HIT was launched.',
-                    required=True)
-parser.add_argument('-s', '--source_file',
-                    required=True,
-                    help="Source file, one source sentence per line.")
-                    
 # args = parser.parse_args()
 
 def print_vote_counts(examples_dict):
@@ -95,6 +84,17 @@ def print_num_annotators(examples_dict):
   print('%s votes in total.' % (total_votes))
 
 if __name__ == '__main__':
+  parser = argparse.ArgumentParser(description='Analyze the AMT HIT results for all of the provided HIT ids.')
+  parser.add_argument('-d', '--responses_path',
+                      help='Path to a .pkl file containing HIT responses',
+                      required=True)
+  parser.add_argument('-t','--target_list',
+                      help='Text file containing paths to target files, one per line. These should be in the same order as they were when the HIT was launched.',
+                      required=True)
+  parser.add_argument('-s', '--source_file',
+                      required=True,
+                      help="Source file, one source sentence per line.")
+                    
   args = parser.parse_args()
   # Read the examples into a dictionary 
   with open(args.target_list, 'r') as fin:
