@@ -118,10 +118,10 @@ if __name__ == '__main__':
   print_num_annotators(examples_dict)
   print()
   print_vote_counts(examples_dict) 
-  print()
-  print_annotator_agreement(examples_dict)
-  print()
-  print_t_test(examples_dict)
+  #print()
+  #print_annotator_agreement(examples_dict)
+  #print()
+  #print_t_test(examples_dict)
 
   # Check that the data looks reasonable.
   results_path = os.path.join(os.path.dirname(args.responses_path), 'results.txt')
