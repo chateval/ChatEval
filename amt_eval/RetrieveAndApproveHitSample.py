@@ -55,7 +55,7 @@ mturk_environment = environments["live"] if create_hits_in_live else environment
 # use profile if one was passed as an arg, otherwise
 profile_name = sys.argv[2] if len(sys.argv) >= 3 else None
 session = boto3.Session(profile_name=profile_name)
-client = utils.create_mturk_client()
+client = utils.create_mturk_client(False)
 
 hit = client.get_hit(HITId=hit_id)
 print('Hit {} status: {}'.format(hit_id, hit['HIT']['HITStatus']))
