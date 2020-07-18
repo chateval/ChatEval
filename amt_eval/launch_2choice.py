@@ -57,7 +57,29 @@ def create_HIT(examples, hit_id):
     fout.write(question_html_value)
 
   question_html_value = question_html_value.encode('ascii', 'xmlcharrefreplace').decode()
-
+  quals = [
+    {
+      'QualificationTypeId': '00000000000000000071',
+      'Comparator': 'EqualTo',
+      'LocaleValues': [{
+        'Country': 'US',
+      }],
+    },
+    {
+      'QualificationTypeId': '000000000000000000L0',
+      'Comparator': 'GreaterThanOrEqualTo',
+      'IntegerValues': [
+        97
+      ],
+    },
+    {
+      'QualificationTypeId': '00000000000000000040',
+      'Comparator': 'GreaterThanOrEqualTo',
+      'IntegerValues': [
+        50
+      ],
+    },
+  ]
   try:
     # These parameters define the HIT that will be created
     # question is what we defined above
@@ -75,6 +97,7 @@ def create_HIT(examples, hit_id):
             AssignmentDurationInSeconds=300,
             LifetimeInSeconds=86400,
             AutoApprovalDelayInSeconds=4*86400,
+            QualificationRequirements=quals,
             Reward="0.10")
             # UniqueRequestToken=hit_id)
   except Exception as e:
